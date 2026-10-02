@@ -6,8 +6,8 @@ O Projeto 1 da disciplina de Programação Web Full Stack consiste no desenvolvi
 A aplicação foi construída seguindo o conceito de Single Page Application (SPA), garantindo que a interface seja atualizada de forma assíncrona e fluida, sem recarregamento da página. O sistema implementa um CRUD funcional focado no gerenciamento de produtos, consumindo uma API JSON externa.
 
 ## 👥 Equipe
-- **Giovane Soldera Ribeiro
-- **Carlos Eduardo
+- **Giovane Soldera Ribeiro**
+- **Carlos Eduardo**
 
 ## 🛠️ Tecnologias e Requisitos Atendidos
 - **Framework Principal:** React.js (com Vite)
