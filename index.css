@@ -1,0 +1,323 @@
+:root {
+  --bg: #f2f4f1;
+  --surface: #ffffff;
+  --ink: #1c2620;
+  --ink-soft: #4b5750;
+  --primary: #2f6f4f;
+  --primary-dark: #244f38;
+  --accent: #d9a441;
+  --border: #dfe4dd;
+  --danger: #b23b3b;
+  --radius: 10px;
+  --font-display: 'Fraunces', 'Georgia', serif;
+  --font-body: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  background: var(--ink);
+  padding: 2rem 0 2.25rem;
+  border-bottom: 4px solid var(--primary);
+}
+
+.app-header .eyebrow {
+  color: var(--accent);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.35rem;
+}
+
+.app-header h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: #fff;
+  font-size: 2.1rem;
+  margin: 0;
+}
+
+.app-header p {
+  color: #b9c2bc;
+  margin: 0.35rem 0 0;
+  max-width: 46ch;
+}
+
+/* ---------- Filtros ---------- */
+.filter-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.4rem;
+  margin-top: -2.5rem;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 8px 24px rgba(28, 38, 32, 0.06);
+}
+
+.filter-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.category-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.category-chip:hover {
+  border-color: var(--primary);
+}
+
+.category-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price-inputs input {
+  width: 90px;
+}
+
+.result-count {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+/* ---------- Grid de produtos ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.1rem;
+}
+
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 10px 22px rgba(28, 38, 32, 0.09);
+  transform: translateY(-2px);
+}
+
+.product-card .thumb-wrap {
+  height: 150px;
+  background: #f7f8f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.product-card .thumb-wrap img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.product-card .card-body {
+  padding: 0.9rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.product-card .category-tag {
+  font-size: 0.72rem;
+  text-transform: none;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.product-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  line-height: 1.25;
+}
+
+.product-card .price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 0.3rem 0 0.5rem;
+}
+
+.product-card .price {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.product-card .rating {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.stock-bar-track {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--border);
+  margin-bottom: 0.6rem;
+  overflow: hidden;
+}
+
+.stock-bar-fill {
+  height: 100%;
+  background: var(--primary);
+}
+
+.stock-bar-fill.low {
+  background: var(--danger);
+}
+
+.stock-label {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.7rem;
+}
+
+.card-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.card-actions button {
+  flex: 1;
+  font-size: 0.8rem;
+}
+
+/* ---------- Estado vazio ---------- */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--ink-soft);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.empty-state h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+}
+
+/* ---------- Botões ---------- */
+.btn-primary {
+  --bs-btn-bg: var(--primary);
+  --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: var(--primary-dark);
+  --bs-btn-hover-border-color: var(--primary-dark);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--primary);
+  --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: var(--primary);
+  --bs-btn-hover-border-color: var(--primary);
+}
+
+/* ---------- Upload de imagem no formulário ---------- */
+.image-upload {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-upload .preview-box {
+  width: 72px;
+  height: 72px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: #f7f8f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.image-upload .preview-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-upload .preview-box span {
+  font-size: 0.65rem;
+  color: var(--ink-soft);
+  text-align: center;
+  padding: 0 0.3rem;
+}
+
+/* ---------- Paginação ---------- */
+.pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 2rem 0 1rem;
+}
+
+.pager button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 6px;
+  width: 34px;
+  height: 34px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.pager button.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
