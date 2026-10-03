@@ -55,10 +55,10 @@ npm run dev
 
 ## Integrantes
 
-| Integrante | Responsabilidade |
+| Integrante | 
 | --- | --- |
-| Nome do integrante 1 | Giovane Soldera Ribeiro|
-| Nome do integrante 2 | Carlos Eduardo Pereira |
+| Giovane Soldera Ribeiro | 
+| Carlos Eduardo Pereira  | 
 
 ## Uso de Inteligência Artificial
 
