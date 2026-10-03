@@ -52,7 +52,7 @@ body {
   max-width: 46ch;
 }
 
-/* ---------- Painel de pesquisa ---------- */
+/* ---------- Filtros ---------- */
 .filter-panel {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -71,6 +71,48 @@ body {
   color: var(--ink-soft);
   margin-bottom: 0.4rem;
   display: block;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.category-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-soft);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.category-chip:hover {
+  border-color: var(--primary);
+}
+
+.category-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.price-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price-inputs input {
+  width: 90px;
 }
 
 .result-count {
@@ -124,6 +166,7 @@ body {
 
 .product-card .category-tag {
   font-size: 0.72rem;
+  text-transform: none;
   color: var(--primary);
   font-weight: 600;
   margin-bottom: 0.2rem;
@@ -141,7 +184,7 @@ body {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin: 0.3rem 0 0;
+  margin: 0.3rem 0 0.5rem;
 }
 
 .product-card .price {
@@ -154,6 +197,40 @@ body {
 .product-card .rating {
   font-size: 0.82rem;
   color: var(--ink-soft);
+}
+
+.stock-bar-track {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--border);
+  margin-bottom: 0.6rem;
+  overflow: hidden;
+}
+
+.stock-bar-fill {
+  height: 100%;
+  background: var(--primary);
+}
+
+.stock-bar-fill.low {
+  background: var(--danger);
+}
+
+.stock-label {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  margin-bottom: 0.7rem;
+}
+
+.card-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 0.4rem;
+}
+
+.card-actions button {
+  flex: 1;
+  font-size: 0.8rem;
 }
 
 /* ---------- Estado vazio ---------- */
@@ -170,4 +247,77 @@ body {
 .empty-state h4 {
   font-family: var(--font-display);
   color: var(--ink);
+}
+
+/* ---------- Botões ---------- */
+.btn-primary {
+  --bs-btn-bg: var(--primary);
+  --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: var(--primary-dark);
+  --bs-btn-hover-border-color: var(--primary-dark);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--primary);
+  --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: var(--primary);
+  --bs-btn-hover-border-color: var(--primary);
+}
+
+/* ---------- Upload de imagem no formulário ---------- */
+.image-upload {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-upload .preview-box {
+  width: 72px;
+  height: 72px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  background: #f7f8f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.image-upload .preview-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-upload .preview-box span {
+  font-size: 0.65rem;
+  color: var(--ink-soft);
+  text-align: center;
+  padding: 0 0.3rem;
+}
+
+/* ---------- Paginação ---------- */
+.pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 2rem 0 1rem;
+}
+
+.pager button {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 6px;
+  width: 34px;
+  height: 34px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.pager button.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
 }
