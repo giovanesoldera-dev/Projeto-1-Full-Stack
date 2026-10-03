@@ -55,8 +55,7 @@ npm run dev
 
 ## Integrantes
 
-| Integrante | 
-| --- | --- |
+| Integrantes | 
 | Giovane Soldera Ribeiro | 
 | Carlos Eduardo Pereira  | 
 
