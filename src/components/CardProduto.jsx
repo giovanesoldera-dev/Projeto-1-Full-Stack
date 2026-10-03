@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap'
 
-// Props: produto (dados a exibir) e onVer (chamada ao clicar em "Ver")
-function CardProduto({ produto, onVer }) {
+// Props: produto (dados a exibir) e funções chamadas ao clicar nos botões
+function CardProduto({ produto, onVer, onEditar, onExcluir }) {
   const estoqueBaixo = produto.stock <= 10
   const percentual = Math.min(100, produto.stock)
 
@@ -26,6 +26,12 @@ function CardProduto({ produto, onVer }) {
         <div className="card-actions">
           <Button size="sm" variant="outline-primary" onClick={() => onVer(produto)}>
             Ver
+          </Button>
+          <Button size="sm" variant="outline-secondary" onClick={() => onEditar(produto)}>
+            Editar
+          </Button>
+          <Button size="sm" variant="outline-danger" onClick={() => onExcluir(produto)}>
+            Excluir
           </Button>
         </div>
       </div>

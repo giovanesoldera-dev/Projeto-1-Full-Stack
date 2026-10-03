@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useState } from 'rea
 
 // URL da API (pode ser trocada pela variável VITE_API_URL em um arquivo .env)
 const API_URL = import.meta.env.VITE_API_URL ?? 'https://dummyjson.com'
+const JSON_HEADERS = { 'Content-Type': 'application/json' }
 
 // Faz a requisição e trata erros de rede e erros HTTP (4xx/5xx).
 // O fetch NÃO rejeita em erro HTTP, por isso verificamos resposta.ok.
@@ -51,7 +52,41 @@ export function ProdutosProvider({ children }) {
     requisicao('/products/category-list').then(setCategorias).catch(() => {})
   }, [buscarProdutos])
 
-  const valor = { produtos, categorias, carregando, erro, buscarProdutos }
+  // POST: cadastrar. A API só simula, então criamos um id local único.
+  async function cadastrarProduto(dados, imagem) {
+    const criado = await requisicao('/products/add', {
+      method: 'POST',
+      headers: JSON_HEADERS,
+      body: JSON.stringify(dados),
+    })
+    setProdutos((prev) => [
+      { rating: 0, ...criado, ...dados, id: `local-${Date.now()}`, local: true, thumbnail: imagem },
+      ...prev,
+    ])
+  }
+
+  // PUT: editar. Produtos criados localmente não existem na API, então só atualizamos a lista.
+  async function editarProduto(produto, dados, imagem) {
+    if (!produto.local) {
+      await requisicao(`/products/${produto.id}`, {
+        method: 'PUT',
+        headers: JSON_HEADERS,
+        body: JSON.stringify(dados),
+      })
+    }
+    const thumbnail = imagem || produto.thumbnail
+    setProdutos((prev) => prev.map((p) => (p.id === produto.id ? { ...p, ...dados, thumbnail } : p)))
+  }
+
+  // DELETE: excluir
+  async function excluirProduto(produto) {
+    if (!produto.local) {
+      await requisicao(`/products/${produto.id}`, { method: 'DELETE' })
+    }
+    setProdutos((prev) => prev.filter((p) => p.id !== produto.id))
+  }
+
+  const valor = { produtos, categorias, carregando, erro, buscarProdutos, cadastrarProduto, editarProduto, excluirProduto }
   return <ProdutosContext.Provider value={valor}>{children}</ProdutosContext.Provider>
 }
 

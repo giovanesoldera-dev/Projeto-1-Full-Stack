@@ -6,9 +6,10 @@ import Paginacao from './Paginacao.jsx'
 
 const POR_PAGINA = 12
 
-function ListaProdutos({ filtros, onVer }) {
-  const { produtos, carregando, erro } = useProdutos()
+function ListaProdutos({ filtros, onVer, onEditar }) {
+  const { produtos, carregando, erro, excluirProduto } = useProdutos()
   const [pagina, setPagina] = useState(1)
+  const [erroAcao, setErroAcao] = useState('')
 
   // Voltar para a página 1 quando a lista ou os filtros mudarem
   useEffect(() => {
@@ -39,11 +40,26 @@ function ListaProdutos({ filtros, onVer }) {
     return filtrados.slice(inicio, inicio + POR_PAGINA)
   }, [filtrados, paginaAtual])
 
+  async function handleExcluir(produto) {
+    if (!window.confirm(`Excluir o produto "${produto.title}"?`)) return
+    setErroAcao('')
+    try {
+      await excluirProduto(produto)
+    } catch (e) {
+      setErroAcao(`Não foi possível excluir: ${e.message}`)
+    }
+  }
+
   return (
     <>
       <div className="result-count mt-3 mb-2">{filtrados.length} produto(s) encontrado(s)</div>
 
       {erro && <Alert variant="danger">{erro}</Alert>}
+      {erroAcao && (
+        <Alert variant="danger" dismissible onClose={() => setErroAcao('')}>
+          {erroAcao}
+        </Alert>
+      )}
 
       {carregando ? (
         <div className="text-center my-5">
@@ -52,7 +68,7 @@ function ListaProdutos({ filtros, onVer }) {
       ) : (
         <div className="product-grid mb-3">
           {daPagina.map((p) => (
-            <CardProduto key={p.id} produto={p} onVer={onVer} />
+            <CardProduto key={p.id} produto={p} onVer={onVer} onEditar={onEditar} onExcluir={handleExcluir} />
           ))}
           {!erro && filtrados.length === 0 && (
             <div className="empty-state">

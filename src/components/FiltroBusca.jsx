@@ -11,8 +11,8 @@ function validarTermo(termo) {
   return ''
 }
 
-// Props: filtros (valores atuais) e onChange (avisa o App que mudou)
-function FiltroBusca({ filtros, onChange }) {
+// Props: filtros (valores atuais), onChange (avisa o App que mudou), onNovo (abre o cadastro)
+function FiltroBusca({ filtros, onChange, onNovo }) {
   const { buscarProdutos, categorias, carregando } = useProdutos()
   const [termo, setTermo] = useState('')
   const [erroTermo, setErroTermo] = useState('')
@@ -89,6 +89,11 @@ function FiltroBusca({ filtros, onChange }) {
             <option value="avaliacao">Melhor avaliados</option>
             <option value="nome">Nome (A–Z)</option>
           </Form.Select>
+        </Col>
+        <Col md={2} className="d-flex align-items-end">
+          <Button variant="success" className="w-100" onClick={onNovo}>
+            + Novo produto
+          </Button>
         </Col>
       </Row>
 
